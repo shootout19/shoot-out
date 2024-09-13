@@ -6,6 +6,7 @@ This Python script provides tools for scanning subdomains and crawling URLs usin
 
 - **Subdomain Scanning**: Find subdomains using `subfinder` and `assetfinder`.
 - **URL Crawling**: Crawl URLs using `katana` and `gau`.
+- **brute forcing** : directory brute forcing
 - **Optional Output File**: Save results to a file or display them in the terminal.
 - **Interrupt Handling**: Handle interruptions gracefully and save the results collected up to that point.
 
@@ -35,24 +36,32 @@ Installation go lang in kali `sudo apt install golang`
 
 # Arguments
 ```
-░██████╗██╗░░██╗░█████╗░░█████╗░████████╗  ░█████╗░██╗░░░██╗████████╗                                                                                        
-██╔════╝██║░░██║██╔══██╗██╔══██╗╚══██╔══╝  ██╔══██╗██║░░░██║╚══██╔══╝                                                                                        
-╚█████╗░███████║██║░░██║██║░░██║░░░██║░░░  ██║░░██║██║░░░██║░░░██║░░░                                                                                        
-░╚═══██╗██╔══██║██║░░██║██║░░██║░░░██║░░░  ██║░░██║██║░░░██║░░░██║░░░                                                                                        
-██████╔╝██║░░██║╚█████╔╝╚█████╔╝░░░██║░░░  ╚█████╔╝╚██████╔╝░░░██║░░░                                                                                        
-╚═════╝░╚═╝░░╚═╝░╚════╝░░╚════╝░░░░╚═╝░░░  ░╚════╝░░╚═════╝░░░░╚═╝░░░                                                                                        
-                                                                                                                                                             
-usage: main.py [-h] -u URL [-o OUTPUT] [-s] [--crawl]
 
-Find subdomains or crawl a URL using specific tools.
+░██████╗██╗░░██╗░█████╗░░█████╗░████████╗  ░█████╗░██╗░░░██╗████████╗
+██╔════╝██║░░██║██╔══██╗██╔══██╗╚══██╔══╝  ██╔══██╗██║░░░██║╚══██╔══╝
+╚█████╗░███████║██║░░██║██║░░██║░░░██║░░░  ██║░░██║██║░░░██║░░░██║░░░
+░╚═══██╗██╔══██║██║░░██║██║░░██║░░░██║░░░  ██║░░██║██║░░░██║░░░██║░░░
+██████╔╝██║░░██║╚█████╔╝╚█████╔╝░░░██║░░░  ╚█████╔╝╚██████╔╝░░░██║░░░
+╚═════╝░╚═╝░░╚═╝░╚════╝░░╚════╝░░░░╚═╝░░░  ░╚════╝░░╚═════╝░░░░╚═╝░░░
+
+usage: main.py [-h] [-u URL] [-o OUTPUT] [-s] [--crawl] [-db] [-w WORDLIST] [-t THREADS]
+
+Main script for handling different tasks.
 
 options:
   -h, --help            show this help message and exit
-  -u URL, --url URL     The URL to process.
+  -u URL, --url URL     The base URL to process.
   -o OUTPUT, --output OUTPUT
                         File to save the results.
   -s, --scan            Trigger subdomain scan.
   --crawl               Trigger URL crawling with both tools.
+  -db, --directory-bruteforce
+                        Run directory brute-forcing.
+  -w WORDLIST, --wordlist WORDLIST
+                        Path to the wordlist file for directory brute-forcing.
+  -t THREADS, --threads THREADS
+                        Number of concurrent threads for directory brute-forcing (default: 10).
+
 ```
 
 # How to use 
@@ -98,6 +107,23 @@ https://www.youtube.com/s/desktop/59ec15cc/cssbin/www-main-desktop-watch-page-sk
 https://www.youtube.com/s/desktop/59ec15cc/jsbin/custom-elements-es5-adapter.vflset/custom-elements-es5-adapter.js
 https://www.youtube.com/s/desktop/59ec15cc/jsbin/www-tampering.vflset/www-tampering.js
 https://www.youtube.com/s/desktop/59ec15cc/jsbin/scheduler.vflset/scheduler.js
+press CTRL + c
+```
+for directory bruteforcing
+```
+python3 main.py -db -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u https://google.com -t 20
+
+░██████╗██╗░░██╗░█████╗░░█████╗░████████╗  ░█████╗░██╗░░░██╗████████╗                                                                                        
+██╔════╝██║░░██║██╔══██╗██╔══██╗╚══██╔══╝  ██╔══██╗██║░░░██║╚══██╔══╝                                                                                        
+╚█████╗░███████║██║░░██║██║░░██║░░░██║░░░  ██║░░██║██║░░░██║░░░██║░░░                                                                                        
+░╚═══██╗██╔══██║██║░░██║██║░░██║░░░██║░░░  ██║░░██║██║░░░██║░░░██║░░░                                                                                        
+██████╔╝██║░░██║╚█████╔╝╚█████╔╝░░░██║░░░  ╚█████╔╝╚██████╔╝░░░██║░░░                                                                                        
+╚═════╝░╚═╝░░╚═╝░╚════╝░░╚════╝░░░░╚═╝░░░  ░╚════╝░░╚═════╝░░░░╚═╝░░░                                                                                        
+                                                                                                                                                             
+Found: https://google.com/# 
+Found: https://google.com/images
+Found: https://google.com/2006
+Found: https://google.com/news
 press CTRL + c
 ```
 
