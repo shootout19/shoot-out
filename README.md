@@ -1,3 +1,4 @@
+This tool is under process so it gives a false result.
 # URL Scanner and Crawler
 
 This Python script provides tools for scanning subdomains and crawling URLs using popular tools like `subfinder`, `assetfinder`, `katana`, and `gau`. The results can be displayed in the terminal or saved to a file.
